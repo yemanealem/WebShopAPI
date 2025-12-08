@@ -1,15 +1,13 @@
 WebShopAPI
 
-A simple .NET 7 Web API for managing a web shop. Provides CRUD operations for Customers, Products, and Shopping Baskets. Designed to integrate with a React frontend. Uses SQLite for storage and Swagger for API documentation/testing.
+A simple .NET 10 Web API for managing a web shop. Provides CRUD operations for Customers, Products, and Shopping Baskets. Designed to integrate with a React frontend. Uses SQLite for storage and Swagger for API documentation/testing.
 
 Note: This project is a lab assignment for a Full-Stack Development course.
 
 
-
-
 Technologies Used
 
-.NET 7 / ASP.NET Core Web API
+.NET 10 / ASP.NET Core Web API
 
 Entity Framework Core (EF Core)
 
@@ -19,7 +17,7 @@ Swashbuckle (Swagger)
 
 Visual Studio Code (VS Code)
 
-C# 11
+C# 12
 
 WebShopAPI/
 │
