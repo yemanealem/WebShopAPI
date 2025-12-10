@@ -1,5 +1,4 @@
 namespace WebShopAPI.DTOs;
-
 public class BasketDTO
 {
     public int CustomerId { get; set; }

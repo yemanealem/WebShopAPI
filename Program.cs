@@ -3,19 +3,33 @@ using WebShopAPI.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 🔥 Add EF Core with SQLite
 builder.Services.AddDbContext<WebShopDbContext>(options =>
     options.UseSqlite("Data Source=webshop.db"));
 
-// Enable Controllers
 builder.Services.AddControllers();
 
-// Enable Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// CORS configration
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5173")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
 var app = builder.Build();
 
+// Enable static files to serve wwwroot
+app.UseStaticFiles();
+app.UseCors("AllowReactApp");
+
+// Swagger only in development
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -23,4 +37,5 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapControllers();
+
 app.Run();

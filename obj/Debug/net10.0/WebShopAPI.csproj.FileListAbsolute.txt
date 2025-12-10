@@ -162,3 +162,5 @@ E:\Tech_Stack\Dot NET\WebShopAPI\obj\Debug\net10.0\refint\WebShopAPI.dll
 E:\Tech_Stack\Dot NET\WebShopAPI\obj\Debug\net10.0\WebShopAPI.pdb
 E:\Tech_Stack\Dot NET\WebShopAPI\obj\Debug\net10.0\WebShopAPI.genruntimeconfig.cache
 E:\Tech_Stack\Dot NET\WebShopAPI\obj\Debug\net10.0\ref\WebShopAPI.dll
+E:\Tech_Stack\Dot NET\WebShopAPI\obj\Debug\net10.0\WebShopAPI.sourcelink.json
+E:\Tech_Stack\Dot NET\WebShopAPI\bin\Debug\net10.0\WebShopAPI.staticwebassets.runtime.json
