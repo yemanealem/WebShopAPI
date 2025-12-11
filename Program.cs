@@ -24,10 +24,12 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+app.UseMiddleware<LoggingMiddleware>();
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
-// Enable static files to serve wwwroot
 app.UseStaticFiles();
 app.UseCors("AllowReactApp");
+
 
 // Swagger only in development
 if (app.Environment.IsDevelopment())
