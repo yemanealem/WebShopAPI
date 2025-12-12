@@ -25,10 +25,8 @@ public async Task<IActionResult> GetAll(string? search = "", int page = 1, int p
     if (page <= 0) page = 1;
     if (pageSize <= 0) pageSize = 10;
 
-    // BASE QUERY
     IQueryable<Product> query = _db.Products;
 
-    // APPLY SEARCH
     if (!string.IsNullOrWhiteSpace(search))
     {
         search = search.ToLower();
@@ -40,11 +38,9 @@ public async Task<IActionResult> GetAll(string? search = "", int page = 1, int p
         );
     }
 
-    // **COUNT AFTER FILTERING**
     var totalItems = await query.CountAsync();
     var totalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
 
-    // PAGINATION
     var products = await query
         .OrderBy(p => p.Id)
         .Skip((page - 1) * pageSize)
@@ -70,12 +66,10 @@ public async Task<IActionResult> GetAll(string? search = "", int page = 1, int p
 
         if (dto.Image != null && dto.Image.Length > 0)
         {
-            // Ensure the folder exists
             var uploadsFolder = Path.Combine(_env.WebRootPath, "images", "products");
             if (!Directory.Exists(uploadsFolder))
                 Directory.CreateDirectory(uploadsFolder);
 
-            // Generate unique filename
             var fileName = $"{Guid.NewGuid()}{Path.GetExtension(dto.Image.FileName)}";
             var filePath = Path.Combine(uploadsFolder, fileName);
 
@@ -84,7 +78,6 @@ public async Task<IActionResult> GetAll(string? search = "", int page = 1, int p
                 await dto.Image.CopyToAsync(stream);
             }
 
-            // Build full URL
             var request = HttpContext.Request;
             imageUrl = $"{request.Scheme}://{request.Host}/images/products/{fileName}";
         }
@@ -95,7 +88,7 @@ public async Task<IActionResult> GetAll(string? search = "", int page = 1, int p
             Price = dto.Price,
             Description = dto.Description,
             Category = dto.Category,
-            RatingRate=5,
+            RatingRate=4.3,
             RatingCount=4,
             Image = imageUrl
         };
@@ -108,53 +101,49 @@ public async Task<IActionResult> GetAll(string? search = "", int page = 1, int p
 
 
 
+[HttpPut("{id}")]
+public async Task<IActionResult> Update(int id, [FromForm] ProductCreateDTO dto)
+{
+    var product = await _db.Products.FindAsync(id);
+    if (product == null) return NotFound();
 
- [HttpPut("{id}")]
-    public async Task<IActionResult> Update(int id, [FromForm] ProductCreateDTO dto)
+    product.Title = dto.Title;
+    product.Price = dto.Price;
+    product.Description = dto.Description;
+    product.Category = dto.Category;
+
+    if (dto.Image != null && dto.Image.Length > 0)
     {
-        var product = await _db.Products.FindAsync(id);
-        if (product == null) return NotFound();
-
-        product.Title = dto.Title;
-        product.Price = dto.Price;
-        product.Description = dto.Description;
-        product.Category = dto.Category;
-
-        if (dto.Image != null && dto.Image.Length > 0)
+        if (!string.IsNullOrEmpty(product.Image))
         {
-            // Delete old image if exists
-            if (!string.IsNullOrEmpty(product.Image))
-            {
-                var oldFilePath = Path.Combine(_env.WebRootPath, "images", "products", Path.GetFileName(product.Image));
-                if (System.IO.File.Exists(oldFilePath)) System.IO.File.Delete(oldFilePath);
-            }
-
-            // Save new image
-            var uploadsFolder = Path.Combine(_env.WebRootPath, "images", "products");
-            if (!Directory.Exists(uploadsFolder)) Directory.CreateDirectory(uploadsFolder);
-
-            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(dto.Image.FileName)}";
-            var filePath = Path.Combine(uploadsFolder, fileName);
-
-            using var stream = new FileStream(filePath, FileMode.Create);
-            await dto.Image.CopyToAsync(stream);
-
-            var request = HttpContext.Request;
-            product.Image = $"{request.Scheme}://{request.Host}/images/products/{fileName}";
+            var oldFilePath = Path.Combine(_env.WebRootPath, "images", "products", Path.GetFileName(product.Image));
+            if (System.IO.File.Exists(oldFilePath)) System.IO.File.Delete(oldFilePath);
         }
 
-        await _db.SaveChangesAsync();
-        return Ok(product);
+        var uploadsFolder = Path.Combine(_env.WebRootPath, "images", "products");
+        if (!Directory.Exists(uploadsFolder)) Directory.CreateDirectory(uploadsFolder);
+
+        var fileName = $"{Guid.NewGuid()}{Path.GetExtension(dto.Image.FileName)}";
+        var filePath = Path.Combine(uploadsFolder, fileName);
+
+        using var stream = new FileStream(filePath, FileMode.Create);
+        await dto.Image.CopyToAsync(stream);
+
+        var request = HttpContext.Request;
+        product.Image = $"{request.Scheme}://{request.Host}/images/products/{fileName}";
     }
 
-    // DELETE: api/products/{id}
+    await _db.SaveChangesAsync();
+    return Ok(product);
+}
+
+
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
         var product = await _db.Products.FindAsync(id);
         if (product == null) return NotFound();
 
-        // Delete image file
         if (!string.IsNullOrEmpty(product.Image))
         {
             var filePath = Path.Combine(_env.WebRootPath, "images", "products", Path.GetFileName(product.Image));
@@ -188,6 +177,17 @@ public async Task<IActionResult> SearchProduct(string? query = "")
         totalItems = results.Count,
         items = results
     });
+}
+
+
+[HttpGet("{id}")]
+public async Task<IActionResult> GetById(int id)
+{
+    var product = await _db.Products.FindAsync(id);
+    if (product == null)
+        return NotFound(new { message = "Product not found." });
+
+    return Ok(product);
 }
 
 }

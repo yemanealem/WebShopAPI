@@ -1,11 +1,10 @@
-namespace WebShopAPI.Models;
-
-public class ShoppingBasket
+public class OrderResponseDTO
 {
-    public int Id { get; set; }
+    public int OrderId { get; set; }
+    public string CustomerName { get; set; } = "";
+    public string CustomerEmail { get; set; } = "";
+    public string CustomerPhone { get; set; } = "";
 
-    public int CustomerId { get; set; }
-    public Customer Customer { get; set; } = null!;
     public string ShippingName { get; set; } = "";
     public string ShippingAddress { get; set; } = "";
     public string ShippingCity { get; set; } = "";
@@ -17,8 +16,5 @@ public class ShoppingBasket
     public string CardExpiry { get; set; } = "";
     public string CardCVC { get; set; } = "";
 
-    
-    public DateTime OrderDate { get; set; } = DateTime.UtcNow; 
-    public string Status { get; set; } = "Pending";
-    public List<OrderItem> OrderItems { get; set; } = new();
+    public List<OrderItemResponseDTO> Items { get; set; } = new();
 }

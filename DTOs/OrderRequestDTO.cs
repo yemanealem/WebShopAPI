@@ -2,18 +2,14 @@ namespace WebShopAPI.DTOs;
 
 public class OrderRequestDTO
 {
-    // Customer info (no authentication yet)
     public string CustomerName { get; set; } = "";
     public string CustomerEmail { get; set; } = "";
     public string CustomerPhone { get; set; } = "";
 
-    // Shipping
     public ShippingDTO Shipping { get; set; } = new();
 
-    // Payment
     public PaymentDTO Payment { get; set; } = new();
 
-    // Items
     public List<OrderItemDTO> Items { get; set; } = new();
 }
 
