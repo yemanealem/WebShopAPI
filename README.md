@@ -4,7 +4,6 @@ A simple .NET 10 Web API for managing a web shop. Provides CRUD operations for C
 
 Note: This project is a lab assignment for a Full-Stack Development course.
 
-
 Technologies Used
 
 .NET 10 / ASP.NET Core Web API
@@ -21,39 +20,38 @@ C# 12
 
 WebShopAPI/
 │
-├─ Controllers/           # API Controllers (Customer, Product, Basket)
-├─ Data/                  # DbContext class
-├─ Models/                # Entity models (Customer, Product, ShoppingBasket)
-├─ Migrations/            # EF Core migrations
-├─ Program.cs             # Application entry point
+├─ Controllers/ # API Controllers (Customer, Product, Basket)
+├─ Data/ # DbContext class
+├─ Models/ # Entity models (Customer, Product, ShoppingBasket)
+├─ Migrations/ # EF Core migrations
+├─ Program.cs # Application entry point
 ├─ WebShopAPI.csproj
 └─ README.md
 
 Setup Instructions
 
-1) git clone git remote add origin https://github.com/yemanealem/WebShopAPI.git
-cd WebShopAPI
+1. git clone git remote add origin https://github.com/yemanealem/WebShopAPI.git
+   cd WebShopAPI
 
-2) dotnet tool install --global dotnet-ef
+2. dotnet tool install --global dotnet-ef
 
-3)  dotnet restore
-Required packages:
-4) dotnet add package Microsoft.EntityFrameworkCore.Sqlite
-dotnet add package Microsoft.EntityFrameworkCore.Design
-dotnet add package Swashbuckle.AspNetCore
+3. dotnet restore
+   Required packages:
+4. dotnet add package Microsoft.EntityFrameworkCore.Sqlite
+   dotnet add package Microsoft.EntityFrameworkCore.Design
+   dotnet add package Swashbuckle.AspNetCore
 
-5. Create and apply migrations
-dotnet ef migrations add InitialCreate
-dotnet ef database update
+5) Create and apply migrations
+   dotnet ef migrations add InitialCreate
+   dotnet ef database update
 
-6) dotnet run
+6. dotnet run
 
 http://localhost:5062
 
 and Access API documentation and test endpoints:
 
 http://localhost:5062/swagger
-
 
 API Endpoints
 Customers
@@ -91,6 +89,3 @@ POST /api/baskets → Add basket entry
 PUT /api/baskets/{id} → Update basket entry
 
 DELETE /api/baskets/{id} → Delete basket entry
-
-
-

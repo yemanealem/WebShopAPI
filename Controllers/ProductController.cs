@@ -88,8 +88,8 @@ public async Task<IActionResult> GetAll(string? search = "", int page = 1, int p
             Price = dto.Price,
             Description = dto.Description,
             Category = dto.Category,
-            RatingRate=4.3,
-            RatingCount=4,
+            RatingRate=0,
+            RatingCount=0,
             Image = imageUrl
         };
 
