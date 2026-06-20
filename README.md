@@ -1,91 +1,139 @@
-WebShopAPI
+# WebShopAPI
 
-A simple .NET 10 Web API for managing a web shop. Provides CRUD operations for Customers, Products, and Shopping Baskets. Designed to integrate with a React frontend. Uses SQLite for storage and Swagger for API documentation/testing.
+A simple **.NET 10 Web API** for managing an online webshop. The API provides full CRUD (Create, Read, Update, Delete) operations for **Customers**, **Products**, and **Shopping Baskets**. It is designed to integrate with a React frontend and uses **SQLite** as the database provider. **Swagger** is included for API documentation and testing.
 
-Note: This project is a lab assignment for a Full-Stack Development course.
+> **Note:** This project was developed as a lab assignment for a Full-Stack Development course.
 
-Technologies Used
+---
 
-.NET 10 / ASP.NET Core Web API
+## Technologies Used
 
-Entity Framework Core (EF Core)
+- .NET 10 / ASP.NET Core Web API
+- C# 12
+- Entity Framework Core (EF Core)
+- SQLite
+- Swashbuckle (Swagger/OpenAPI)
+- Visual Studio Code (VS Code)
 
-SQLite Database
+---
 
-Swashbuckle (Swagger)
+## Project Structure
 
-Visual Studio Code (VS Code)
-
-C# 12
-
+```text
 WebShopAPI/
 │
-├─ Controllers/ # API Controllers (Customer, Product, Basket)
-├─ Data/ # DbContext class
-├─ Models/ # Entity models (Customer, Product, ShoppingBasket)
-├─ Migrations/ # EF Core migrations
-├─ Program.cs # Application entry point
-├─ WebShopAPI.csproj
-└─ README.md
+├── Controllers/       # API controllers (Customers, Products, Baskets)
+├── Data/              # Database context (DbContext)
+├── Models/            # Entity models
+├── Migrations/        # EF Core migrations
+├── Program.cs         # Application entry point
+├── WebShopAPI.csproj
+└── README.md
+```
 
-Setup Instructions
+---
 
-1. git clone git remote add origin https://github.com/yemanealem/WebShopAPI.git
-   cd WebShopAPI
+## Getting Started
 
-2. dotnet tool install --global dotnet-ef
+### 1. Clone the Repository
 
-3. dotnet restore
-   Required packages:
-4. dotnet add package Microsoft.EntityFrameworkCore.Sqlite
-   dotnet add package Microsoft.EntityFrameworkCore.Design
-   dotnet add package Swashbuckle.AspNetCore
+```bash
+git clone https://github.com/yemanealem/WebShopAPI.git
+cd WebShopAPI
+```
 
-5) Create and apply migrations
-   dotnet ef migrations add InitialCreate
-   dotnet ef database update
+### 2. Install EF Core Tools
 
-6. dotnet run
+```bash
+dotnet tool install --global dotnet-ef
+```
 
+### 3. Restore Dependencies
+
+```bash
+dotnet restore
+```
+
+### 4. Install Required Packages
+
+```bash
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Swashbuckle.AspNetCore
+```
+
+### 5. Create and Apply Database Migrations
+
+```bash
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+```
+
+### 6. Run the Application
+
+```bash
+dotnet run
+```
+
+The API will be available at:
+
+```text
 http://localhost:5062
+```
 
-and Access API documentation and test endpoints:
+Swagger UI:
 
+```text
 http://localhost:5062/swagger
+```
 
-API Endpoints
-Customers
+---
 
-GET /api/customers → Get all customers
+## API Endpoints
 
-GET /api/customers/{id} → Get customer by ID
+### Customers
 
-POST /api/customers → Create a new customer
+| Method | Endpoint              | Description           |
+| ------ | --------------------- | --------------------- |
+| GET    | `/api/customers`      | Get all customers     |
+| GET    | `/api/customers/{id}` | Get a customer by ID  |
+| POST   | `/api/customers`      | Create a new customer |
+| PUT    | `/api/customers/{id}` | Update a customer     |
+| DELETE | `/api/customers/{id}` | Delete a customer     |
 
-PUT /api/customers/{id} → Update customer
+### Products
 
-DELETE /api/customers/{id} → Delete customer
+| Method | Endpoint             | Description          |
+| ------ | -------------------- | -------------------- |
+| GET    | `/api/products`      | Get all products     |
+| GET    | `/api/products/{id}` | Get a product by ID  |
+| POST   | `/api/products`      | Create a new product |
+| PUT    | `/api/products/{id}` | Update a product     |
+| DELETE | `/api/products/{id}` | Delete a product     |
 
-Products
+### Shopping Baskets
 
-GET /api/products → Get all products
+| Method | Endpoint            | Description              |
+| ------ | ------------------- | ------------------------ |
+| GET    | `/api/baskets`      | Get all basket entries   |
+| GET    | `/api/baskets/{id}` | Get a basket entry by ID |
+| POST   | `/api/baskets`      | Add a new basket entry   |
+| PUT    | `/api/baskets/{id}` | Update a basket entry    |
+| DELETE | `/api/baskets/{id}` | Delete a basket entry    |
 
-GET /api/products/{id} → Get product by ID
+---
 
-POST /api/products → Add new product
+## Features
 
-PUT /api/products/{id} → Update product
+- RESTful API design
+- CRUD operations for Customers, Products, and Shopping Baskets
+- SQLite database integration using Entity Framework Core
+- Automatic API documentation with Swagger
+- Ready for integration with a React frontend
+- Code-first database migrations
 
-DELETE /api/products/{id} → Delete product
+---
 
-Shopping Baskets
+## Author
 
-GET /api/baskets → Get all basket entries
-
-GET /api/baskets/{id} → Get basket by ID
-
-POST /api/baskets → Add basket entry
-
-PUT /api/baskets/{id} → Update basket entry
-
-DELETE /api/baskets/{id} → Delete basket entry
+**Yemane Alem**
