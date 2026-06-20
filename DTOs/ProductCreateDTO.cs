@@ -8,5 +8,5 @@ public class ProductCreateDTO
     public decimal Price { get; set; }
     public string Category { get; set; }
     public string Description { get; set; }
-    public IFormFile Image { get; set; } // The uploaded image
+    public IFormFile Image { get; set; } 
 }

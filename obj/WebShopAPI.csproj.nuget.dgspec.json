@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Tech_Stack\\Dot NET\\WebShopAPI\\WebShopAPI.csproj": {}
+    "E:\\dev\\Dot NET\\WebShopAPI\\WebShopAPI.csproj": {}
   },
   "projects": {
-    "E:\\Tech_Stack\\Dot NET\\WebShopAPI\\WebShopAPI.csproj": {
+    "E:\\dev\\Dot NET\\WebShopAPI\\WebShopAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Tech_Stack\\Dot NET\\WebShopAPI\\WebShopAPI.csproj",
+        "projectUniqueName": "E:\\dev\\Dot NET\\WebShopAPI\\WebShopAPI.csproj",
         "projectName": "WebShopAPI",
-        "projectPath": "E:\\Tech_Stack\\Dot NET\\WebShopAPI\\WebShopAPI.csproj",
+        "projectPath": "E:\\dev\\Dot NET\\WebShopAPI\\WebShopAPI.csproj",
         "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "E:\\Tech_Stack\\Dot NET\\WebShopAPI\\obj\\",
+        "outputPath": "E:\\dev\\Dot NET\\WebShopAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -90,7 +90,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.109/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
